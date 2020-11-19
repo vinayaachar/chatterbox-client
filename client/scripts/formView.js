@@ -16,7 +16,7 @@ var FormView = {
 
     var message = {
       username: App.username,
-      text: text
+      text: _.escape(text),
     };
 
     var successCallback = function () {
