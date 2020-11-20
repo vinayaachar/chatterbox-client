@@ -22,13 +22,29 @@ var RoomsView = {
     //FormView.$chats.prepend(htmlChat);
   },
 
+  allRooms: function(messages) {
+    //allRooms function for app.js access
+    var results = {};
+
+    for (let message of messages) {
+      //iterate through inputted data.results
+      let roomname = message.roomname;
+      //create roomnames from data input
+      if (!results[roomname] && roomname !== undefined) {
+        results[roomname] = roomname;
+      }
+    }
+    //return all the rooms to store in Rooms.rooms
+    return Object.keys(results);
+  },
+
   handleSelect: function (event) {
     //loop through Messages.results array to get Messages.results[i].roomName === room
-      //roomText = Message.results[i]
-      //pass into MessageView.render(Message.results[i])
+    //roomText = Message.results[i]
+    //pass into MessageView.render(Message.results[i])
     // var room = $('#rooms select option:selected').text().trim();
 
-    // // FormView.$chats.empty();
+    // MessagesView.$chats.empty();
     // for (i = 0; i < Messages.results.length; i ++) {
     //   var message = Messages.results[i];
     //   if (message.roomName === room) {
@@ -47,6 +63,7 @@ var RoomsView = {
 
 
   render: function (room) {
+    //for apps.js data, need to render each room contained in Rooms.rooms
     for (let room of Rooms.rooms) {
       RoomsView.renderRoom(room);
     }
@@ -54,9 +71,13 @@ var RoomsView = {
     //render the room (RoomsView.renderRoom(room))
   },
 
-  renderRoom: function (roomName) {
-    var htmlRoom = RoomView.render({ room: roomName });
-    $(htmlRoom).appendTo(RoomsView.$select);
+  renderRoom: function (room) {
+    //rendered room data from .render
+    //add to select drop down
+    var renderedRoom = RoomView.render({
+      room
+    });
+    RoomsView.$select.append(renderedRoom);
   },
 
 

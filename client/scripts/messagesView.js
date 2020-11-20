@@ -6,19 +6,29 @@ var MessagesView = {
   },
 
   render: function () {
-    var room = $('#rooms select option:selected').text().trim();
 
-    // FormView.$chats.empty();
-    //iterate through our results array
-    //for each message object
-    //create a new messageView
-    for (i = 0; i < Messages.results.length; i ++) {
-      var message = Messages.results[i];
-      if (message.roomName === room) {
-        var roomText = MessageView.render(message);
-        FormView.$chats.prepend(roomText);
-      }
+    MessagesView.$chats.empty();
+
+    var messages;
+    //need a way to filter messages to either all rooms
+    if (Rooms.selectedRoom === 'All rooms') {
+      messages = Messages.results;
+    } else {
+      //or messages filtered by roommname
+      messages = Messages.results.filter((message) => {
+        //gets unique messages roomname
+        return !!message.roomname;
+      }).filter((message) => {
+        //filters unique messages to check if message's room
+        //matches selected room
+        return message.roomname.trim() === Rooms.selectedRoom.trim();
+      });
     }
+    //filter returns an array with all elements that passed our test
+    //render each filtered message
+    messages.forEach(MessagesView.renderMessage);
+
+
 
   },
 

@@ -1,7 +1,7 @@
 var Rooms = {
   rooms: [],
 
-  selectedRoom: '',
+  selectedRoom: 'All rooms',
 
   add: function(event) {
     RoomsView.handleSubmit(event);
