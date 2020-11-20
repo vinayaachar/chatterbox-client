@@ -4,8 +4,8 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function () {
-    RoomsView.$button.on('click', RoomsView.handleSubmit);
-    RoomsView.$select.on('click', RoomsView.handleSelect);
+    RoomsView.$button.on('click', Rooms.add);
+    RoomsView.$select.on('click', RoomsView.selectRoom);
     //create a prompt messsage to prompt user to input roomName
     //addRoom function, which calls renderRoom
   },
@@ -22,6 +22,28 @@ var RoomsView = {
     //FormView.$chats.prepend(htmlChat);
   },
 
+  handleSelect: function (event) {
+    //loop through Messages.results array to get Messages.results[i].roomName === room
+      //roomText = Message.results[i]
+      //pass into MessageView.render(Message.results[i])
+    // var room = $('#rooms select option:selected').text().trim();
+
+    // // FormView.$chats.empty();
+    // for (i = 0; i < Messages.results.length; i ++) {
+    //   var message = Messages.results[i];
+    //   if (message.roomName === room) {
+    //     var roomText = MessageView.render(message);
+    //     FormView.$chats.prepend(roomText);
+    //   }
+    // }
+  },
+
+  selectRoom: function (event) {
+    event.preventDefault();
+    Rooms.selectedRoom = $('#rooms select option:selected').text().trim();
+    FormView.$chats.empty();
+    MessagesView.render();
+  },
 
 
   render: function (room) {

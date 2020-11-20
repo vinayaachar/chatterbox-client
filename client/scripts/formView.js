@@ -3,7 +3,16 @@ var FormView = {
   $form: $('form'),
 
   $chats: $('#chats'),
-
+  // roomView.js
+    // 1. Choose a room (store the room name in temp var)
+      //$('chats').empty()
+      // pull msg's belonging to that room and create the page
+    // 2. Render page for that room with messages belonging to that room (from msg.js)
+  // Form File
+    //1. Create messages -> store them in message.js
+    // { roomName1: [chat1, chat2] }
+      //need to store what room the message is created in
+    //2. Prepend msg to the body
   initialize: function () {
     FormView.$form.on('submit', FormView.handleSubmit);
   },
@@ -16,8 +25,19 @@ var FormView = {
 
     var message = {
       username: App.username,
-      text: _.escape(text),
+      roomName: $('#rooms select option:selected').text().trim(),
+      text: _.escape(text)
     };
+
+    console.log(message);
+
+    // populate the messages.js
+
+    // if (!Messages[message.room]) {
+    //   Messages[message.room] = [];
+    // } else {
+    //   Messages[message.room].push(message.text);
+    // }
 
     var successCallback = function () {
       console.log('Successfully created ', message);
@@ -25,7 +45,6 @@ var FormView = {
     };
 
     Parse.create(message, successCallback);
-    console.log('click!');
     var htmlChat = MessageView.render(message);
     FormView.$chats.prepend(htmlChat);
   },

@@ -6,6 +6,20 @@ var MessagesView = {
   },
 
   render: function () {
+    var room = $('#rooms select option:selected').text().trim();
+
+    // FormView.$chats.empty();
+    //iterate through our results array
+    //for each message object
+    //create a new messageView
+    for (i = 0; i < Messages.results.length; i ++) {
+      var message = Messages.results[i];
+      if (message.roomName === room) {
+        var roomText = MessageView.render(message);
+        FormView.$chats.prepend(roomText);
+      }
+    }
+
   },
 
 

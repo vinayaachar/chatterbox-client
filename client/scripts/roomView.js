@@ -1,7 +1,7 @@
 var RoomView = {
 
   render: _.template(`
-      <option class="room">
+      <option class="room" value = <%= room %>>
         <%= room %>
       </option>
     `)

@@ -1,4 +1,10 @@
 var Rooms = {
-  rooms: []
+  rooms: [],
 
+  selectedRoom: '',
+
+  add: function(event) {
+    RoomsView.handleSubmit(event);
+
+  },
 };
