@@ -1,15 +1,25 @@
-var Friends = {
-  toggleStatus: function() {
-    // returns true or false depending on a click event
-    $(document).ready(function (event) {
-      $('.username').on('click', function () {
-        console.log('inside');
-        var userName = event.currentTarget.innerTarget;
-        Friends.friends.add(userName);
-        return true;
-      });
-    });
-  }
+var FriendsView = {
 
+  initialize: function () {
+    $('#chats').on('click', Friends.toggleStatus);
+  },
+
+  toggleStatus: function (event) {
+    // returns true or false depending on a click event
+    event.preventDefault();
+    var userName = event.target.innerText;
+    console.log(userName);
+    if (Friends.friends.has(userName)) {
+      console.log('Removing ' + userName + ' from friends.');
+      Friends.friends.delete(userName);
+    } else {
+      console.log('Adding ' + userName + ' to friends.');
+      Friends.friends.add(userName);
+
+    }
+    return true;
+    //Friends.renderFriends(this)
+
+  }
 
 };

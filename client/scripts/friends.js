@@ -1,9 +1,9 @@
 var Friends = {
   friends: new Set(),
 
-  toggleStatus: function () {
+  toggleStatus: function (event) {
     console.log('here');
-    friendsView.toggleStatus();
+    FriendsView.toggleStatus(event);
   }
 
 

@@ -20,7 +20,6 @@ var FormView = {
   handleSubmit: function (event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-    console.log(event.currentTarget);
     var text = FormView.$form.find('input[type=text]').val();
     var room = $('#rooms select option:selected').text().trim();
 
@@ -29,18 +28,6 @@ var FormView = {
       text: _.escape(text),
       roomName: room
     };
-
-    console.log(message);
-
-
-
-    // populate the messages.js
-
-    // if (!Messages[message.room]) {
-    //   Messages[message.room] = [];
-    // } else {
-    //   Messages[message.room].push(message.text);
-    // }
 
     var successCallback = function () {
       console.log('Successfully created ', message);
