@@ -5,7 +5,7 @@ var RoomsView = {
 
   initialize: function () {
     RoomsView.$button.on('click', Rooms.add);
-    RoomsView.$select.on('click', RoomsView.selectRoom);
+    RoomsView.$select.on('change', RoomsView.selectRoom);
     //create a prompt messsage to prompt user to input roomName
     //addRoom function, which calls renderRoom
   },
@@ -40,10 +40,11 @@ var RoomsView = {
 
 
   selectRoom: function (event) {
-    event.preventDefault();
+    //event.preventDefault();
     Rooms.selectedRoom = $('#rooms select option:selected').text().trim();
 
     MessagesView.render();
+
   },
 
 

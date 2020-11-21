@@ -5,6 +5,28 @@ var MessagesView = {
   initialize: function () {
   },
 
+  highlightFriends: function () {
+    $('.username').each(function () {
+      var userName = this.innerText;
+      if (Friends.friends.has(userName.trim())) {
+        $(this).addClass('friend');
+      }
+    });
+    //username == innerText
+    //check if that person if our friend (Friends.friends has username)
+    //.addClass('friend')
+
+  },
+
+  unhighlightFriends: function () {
+    $('.username').each(function () {
+      var userName = this.innerText;
+      if (Friends.friends.has(userName.trim())) {
+        $(this).removeClass('friend');
+      }
+    });
+  },
+
   render: function () {
 
     MessagesView.$chats.empty();
@@ -12,6 +34,7 @@ var MessagesView = {
     var messages;
     //need a way to filter messages to either all rooms
     if (Rooms.selectedRoom === 'All rooms') {
+      console.log('here');
       messages = Messages.results;
     } else {
       //or messages filtered by roommname
@@ -23,12 +46,12 @@ var MessagesView = {
         //matches selected room
         return message.roomname.trim() === Rooms.selectedRoom.trim();
       });
+
     }
     //filter returns an array with all elements that passed our test
     //render each filtered message
+
     messages.forEach(MessagesView.renderMessage);
-
-
 
   },
 

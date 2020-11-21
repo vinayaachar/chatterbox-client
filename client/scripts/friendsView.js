@@ -11,11 +11,12 @@ var FriendsView = {
     console.log(userName);
     if (Friends.friends.has(userName)) {
       console.log('Removing ' + userName + ' from friends.');
+      MessagesView.unhighlightFriends();
       Friends.friends.delete(userName);
     } else {
       console.log('Adding ' + userName + ' to friends.');
       Friends.friends.add(userName);
-
+      MessagesView.highlightFriends();
     }
     return true;
     //Friends.renderFriends(this)
